@@ -4,6 +4,7 @@ const port = 3000;
 const mysql = require('mysql');
 require('dotenv').config()
 
+// Create database connection
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -12,22 +13,21 @@ const connection = mysql.createConnection({
     port: process.env.DB_PORT,
 })
 
+// Establish database connection
 connection.connect();
 
+// Get all projects
 app.get('/projects', (req, res) => {
     connection.query('SELECT * FROM clients', function(err, result, fields) {
         res.send(result);
     });
 });
 
+// Get specific project according to clientId
 app.get('/projects/:id', (req, res) => {
     let clientId = req.params.id;
 
     connection.query('SELECT * FROM clients WHERE id =' + clientId, function(err, result, fields) {
         res.send(result);
     });
-})
-
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
 })
