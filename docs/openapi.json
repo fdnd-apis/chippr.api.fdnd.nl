@@ -1,0 +1,1887 @@
+{
+"openapi": "3.0.3",
+"info": {
+"title": "FDND Tribe API",
+"description": "It's an API that contains open info on all tribe members. Member information is handed over with consent and will be shared openly on the internet.\n\n# Introduction\n\nThis API is provided for students at FDND and CMD to be used in any way that they see fit. It uses no authentication and will be reset to standard data if needed. Note that because of this all information inserted is volatile.. If you want something to persist, contact your teacher to add data to the standard.\n\n# OpenAPI Specification\n\nThis API is documented in OpenAPI format by the [FDND](https://fdnd.nl) team. It was extended to show features of the [ReDoc](https://github.com/Redocly/redoc) documentation.\n\n# Cross-Origin Resource Sharing\n\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with [W3C spec](https://www.w3.org/TR/cors/). And that allows cross-domain communication from the browser. All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site\n\n# Authentication\n\nAs this API only contains open info we haven't implemented any way of authenticating.",
+"version": "0.0.1",
+"contact": {
+"name": "Frontend Design & Development (fdnd) @ Amsterdam University of Applied Sciences (AUAS)",
+"url": "https://fdnd.nl",
+"email": "info-fdnd@hva.nl"
+},
+"x-logo": {
+"url": "https://avatars.githubusercontent.com/u/50839234?s=400&u=ad7e49da9dcf224f4780d797b93aa86640a27a9f&v=4",
+"altText": "FDND Logo"
+},
+"license": {
+"name": "GNU GPL v3.0",
+"url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
+}
+},
+"servers": [
+{
+"url": "https://tribe.api.fdnd.nl/v1",
+"description": "Production server"
+}
+],
+"tags": [
+{
+"name": "member"
+},
+{
+"name": "squad"
+},
+{
+"name": "team"
+},
+{
+"name": "tribe"
+}
+],
+"paths": {
+"/tribe": {
+"get": {
+"description": "Gets a list of all tribes using pagination",
+"responses": {
+"200": {
+"description": "A list of tribes",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"tribeId",
+"name",
+"cohort",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"cohort": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"page": {
+"type": "number"
+},
+"limit": {
+"type": "string",
+"minLength": 1
+}
+},
+"required": [
+"page",
+"limit"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"tribeId": 7,
+"name": "FDND Founders",
+"cohort": "2021",
+"description": "First tribe @FDND",
+"avatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+"url": "https://fdnd.nl/"
+},
+{
+"tribeId": 8,
+"name": "Minor Web Tribe 2022",
+"cohort": "2122",
+"description": "This is the tribe for the minor web design & development 2122",
+"avatar": "https://avatars.githubusercontent.com/u/36165843?s=200&v=4",
+"url": "https://github.com/cmda-minor-web"
+}
+],
+"meta": {
+"page": 1,
+"limit": "50"
+}
+}
+}
+},
+"examples": {
+"example-1": {
+"value": {
+"data": [
+{
+"tribeId": 0,
+"name": "string",
+"cohort": "string",
+"description": "string",
+"avatar": "string",
+"url": "string"
+}
+],
+"meta": {
+"page": 0,
+"limit": "string"
+}
+}
+}
+}
+}
+}
+},
+"": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"tribeId",
+"name",
+"cohort",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"cohort": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"page": {
+"type": "number"
+},
+"limit": {
+"type": "number"
+}
+},
+"required": [
+"page",
+"limit"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"tribeId": 7,
+"name": "FDND Founders",
+"cohort": "2021",
+"description": "First tribe @FDND",
+"avatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+"url": "https://fdnd.nl/"
+},
+{
+"tribeId": 8,
+"name": "Minor Web Tribe 2022",
+"cohort": "2122",
+"description": "This is the tribe for the minor web design & development 2122",
+"avatar": "https://avatars.githubusercontent.com/u/36165843?s=200&v=4",
+"url": "https://github.com/cmda-minor-web"
+}
+],
+"meta": {
+"page": 1,
+"limit": 50
+}
+}
+}
+}
+}
+},
+"description": "An object containing data[] which holds a list of all tribes and meta{} which holds meta information on pagination"
+}
+},
+"operationId": "get-tribe",
+"summary": "get tribe",
+"tags": [
+"tribe"
+]
+},
+"parameters": [],
+"post": {
+"summary": "post tribe",
+"operationId": "post-tribe",
+"responses": {
+"200": {
+"description": "The added tribe with the new insertId",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"tribeId",
+"name",
+"cohort",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"cohort": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"insertId": {
+"type": "number"
+}
+},
+"required": [
+"insertId"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"tribeId": 2,
+"name": "Nieuwe tribe",
+"cohort": "2122",
+"description": "API test door Justus",
+"avatar": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
+"url": "https://fdnd.nl"
+}
+],
+"meta": {
+"insertId": 2
+}
+}
+}
+}
+}
+}
+}
+},
+"description": "Adds a tribe",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"cohort": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+},
+"required": [
+"tribeId",
+"name",
+"cohort",
+"description",
+"avatar",
+"url"
+],
+"x-examples": {
+"example-1": {
+"tribeId": 0,
+"name": "Nieuwe tribe",
+"cohort": "2122",
+"description": "API test door Justus",
+"avatar": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
+"url": "https://fdnd.nl"
+}
+}
+},
+"examples": {}
+}
+},
+"description": "The tribe to be added"
+},
+"tags": [
+"tribe"
+]
+},
+"patch": {
+"summary": "patch tribe",
+"operationId": "patch-tribe",
+"responses": {
+"200": {
+"description": "The patched tribe and some meta info on the affected and changed rows. If affected rows is 0 then there is no corresponding tribe. If changed rows is 0 then there were no changes.",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"tribeId",
+"name",
+"cohort",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"cohort": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"affectedRows": {
+"type": "number"
+},
+"changedRows": {
+"type": "number"
+}
+},
+"required": [
+"affectedRows",
+"changedRows"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"tribeId": 1,
+"name": "Nieuwe tribe",
+"cohort": "2122",
+"description": "API test door Justus again",
+"avatar": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
+"url": "https://fdnd.nl"
+}
+],
+"meta": {
+"affectedRows": 1,
+"changedRows": 1
+}
+}
+}
+}
+}
+}
+}
+},
+"description": "Patches a tribe",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"cohort": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+},
+"required": [
+"tribeId",
+"name",
+"cohort",
+"description",
+"avatar",
+"url"
+],
+"x-examples": {
+"example-1": {
+"tribeId": 0,
+"name": "Nieuwe tribe",
+"cohort": "2122",
+"description": "API test door Justus",
+"avatar": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
+"url": "https://fdnd.nl"
+}
+}
+}
+}
+},
+"description": "The tribe to be patched, use the correct tribeId"
+},
+"tags": [
+"tribe"
+]
+}
+},
+"/tribe/{id}": {
+"get": {
+"summary": "get tribe by id",
+"tags": [
+"tribe"
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"tribeId",
+"name",
+"cohort",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"cohort": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"tribeId": {
+"type": "string",
+"minLength": 1
+}
+},
+"required": [
+"tribeId"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"tribeId": 7,
+"name": "FDND Founders",
+"cohort": "2021",
+"description": "First tribe @FDND",
+"avatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+"url": "https://fdnd.nl/"
+}
+],
+"meta": {
+"tribeId": "7"
+}
+}
+}
+}
+}
+}
+}
+},
+"operationId": "get-tribe-by-id",
+"description": "Gets a specific tribe identified by {id}"
+},
+"parameters": [
+{
+"schema": {
+"type": "integer"
+},
+"name": "id",
+"in": "path",
+"required": true,
+"description": "a tribeId used to get a specific tribe"
+}
+]
+},
+"/squad": {
+"get": {
+"summary": "get squad",
+"tags": [
+"squad"
+],
+"responses": {
+"200": {
+"description": "OK"
+}
+},
+"operationId": "get-squad",
+"description": "Gets a list of all squads using pagination"
+},
+"post": {
+"summary": "post squad",
+"operationId": "post-squad",
+"responses": {
+"200": {
+"description": "The added squad with the new insertId",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"squadId",
+"tribeId",
+"name",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"squadId": {
+"type": "number"
+},
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"url": {
+"type": "string"
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"insertId": {
+"type": "number"
+}
+},
+"required": [
+"insertId"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"squadId": 2,
+"tribeId": 2,
+"name": "Squad2",
+"description": "Dit is ook een supervette squad",
+"avatar": "",
+"url": ""
+}
+],
+"meta": {
+"insertId": 2
+}
+}
+}
+}
+}
+}
+}
+},
+"description": "Adds a squad",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"x-examples": {
+"example-1": {
+"squadId": 1,
+"tribeId": 2,
+"name": "Squad2",
+"description": "Dit is ook een supervette squad",
+"avatar": "",
+"url": ""
+}
+},
+"properties": {
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"url": {
+"type": "string"
+}
+},
+"required": [
+"tribeId",
+"name",
+"description",
+"avatar",
+"url"
+]
+}
+}
+},
+"description": "The squad to be added"
+},
+"tags": [
+"squad"
+]
+},
+"patch": {
+"summary": "patch squad",
+"operationId": "patch-squad",
+"responses": {
+"200": {
+"description": "The patched squad and some meta info on the affected and changed rows. If affected rows is 0 then there is no corresponding squad. If changed rows is 0 then there were no changes.",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"squadId",
+"tribeId",
+"name",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"squadId": {
+"type": "number"
+},
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"url": {
+"type": "string"
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"affectedRows": {
+"type": "number"
+},
+"changedRows": {
+"type": "number"
+}
+},
+"required": [
+"affectedRows",
+"changedRows"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"squadId": 2,
+"tribeId": 2,
+"name": "w00t",
+"description": "jaaa een nieuwe beschrijving",
+"avatar": "",
+"url": ""
+}
+],
+"meta": {
+"affectedRows": 1,
+"changedRows": 1
+}
+}
+}
+}
+}
+}
+}
+},
+"description": "Patches a squad",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"squadId": {
+"type": "number"
+},
+"tribeId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"url": {
+"type": "string"
+}
+},
+"required": [
+"squadId",
+"tribeId",
+"name",
+"description",
+"avatar",
+"url"
+],
+"x-examples": {
+"example-1": {
+"squadId": 2,
+"tribeId": 2,
+"name": "w00t",
+"description": "jaaa een nieuwe beschrijving",
+"avatar": "",
+"url": ""
+}
+}
+}
+}
+},
+"description": "The squad to be patched, use the correct squadId"
+},
+"tags": [
+"squad"
+]
+}
+},
+"/member": {
+"get": {
+"summary": "get member",
+"tags": [
+"member"
+],
+"responses": {
+"200": {
+"description": "OK"
+}
+},
+"operationId": "get-member",
+"description": "Gets a list of all members using pagination"
+},
+"post": {
+"summary": "post member",
+"operationId": "post-member",
+"responses": {
+"200": {
+"description": "The added member with the new insertId",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"memberId",
+"squadId",
+"type",
+"nickname",
+"name",
+"prefix",
+"surname",
+"avatar",
+"githubHandle",
+"bio",
+"url"
+],
+"properties": {
+"memberId": {
+"type": "number"
+},
+"squadId": {
+"type": "number"
+},
+"type": {
+"type": "string",
+"minLength": 1
+},
+"nickname": {
+"type": "string",
+"minLength": 1
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"prefix": {
+"type": "string"
+},
+"surname": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"githubHandle": {
+"type": "string",
+"minLength": 1
+},
+"bio": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"insertId": {
+"type": "number"
+}
+},
+"required": [
+"insertId"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"memberId": 3,
+"squadId": 1,
+"type": "student",
+"nickname": "flappie",
+"name": "Justus",
+"prefix": "",
+"surname": "Sturkenboom",
+"avatar": "",
+"githubHandle": "ju5tu5",
+"bio": "I am a banana!",
+"url": "https://ju5tu5.nl"
+}
+],
+"meta": {
+"insertId": 3
+}
+}
+}
+}
+}
+}
+}
+},
+"description": "Adds a member",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"squadId": {
+"type": "number"
+},
+"type": {
+"type": "string",
+"minLength": 1
+},
+"nickname": {
+"type": "string",
+"minLength": 1
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"prefix": {
+"type": "string"
+},
+"surname": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"githubHandle": {
+"type": "string",
+"minLength": 1
+},
+"bio": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+},
+"required": [
+"squadId",
+"type",
+"nickname",
+"name",
+"prefix",
+"surname",
+"avatar",
+"githubHandle",
+"bio",
+"url"
+],
+"x-examples": {
+"example-1": {
+"squadId": 1,
+"type": "student",
+"nickname": "flappie",
+"name": "Justus",
+"prefix": "",
+"surname": "Sturkenboom",
+"avatar": "",
+"githubHandle": "ju5tu5",
+"bio": "I am a banana!",
+"url": "https://ju5tu5.nl"
+}
+}
+}
+}
+},
+"description": "The member to be added"
+},
+"tags": [
+"member"
+]
+},
+"patch": {
+"summary": "patch member",
+"operationId": "patch-member",
+"responses": {
+"200": {
+"description": "The patched member and some meta info on the affected and changed rows. If affected rows is 0 then there is no corresponding member. If changed rows is 0 then there were no changes.",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"memberId",
+"squadId",
+"type",
+"nickname",
+"name",
+"prefix",
+"surname",
+"avatar",
+"githubHandle",
+"bio",
+"url"
+],
+"properties": {
+"memberId": {
+"type": "number"
+},
+"squadId": {
+"type": "number"
+},
+"type": {
+"type": "string",
+"minLength": 1
+},
+"nickname": {
+"type": "string",
+"minLength": 1
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"prefix": {
+"type": "string",
+"minLength": 1
+},
+"surname": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"githubHandle": {
+"type": "string",
+"minLength": 1
+},
+"bio": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"affectedRows": {
+"type": "number"
+},
+"changedRows": {
+"type": "number"
+}
+},
+"required": [
+"affectedRows",
+"changedRows"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"memberId": 1,
+"squadId": 1,
+"type": "student",
+"nickname": "gozer",
+"name": "je",
+"prefix": "weet",
+"surname": "zelf",
+"avatar": "",
+"githubHandle": "dude",
+"bio": "I am a banana!",
+"url": "https://gozer.nl"
+}
+],
+"meta": {
+"affectedRows": 1,
+"changedRows": 1
+}
+}
+}
+}
+}
+}
+}
+},
+"description": "Patches a member",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"memberId": {
+"type": "number"
+},
+"squadId": {
+"type": "number"
+},
+"type": {
+"type": "string",
+"minLength": 1
+},
+"nickname": {
+"type": "string",
+"minLength": 1
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"prefix": {
+"type": "string",
+"minLength": 1
+},
+"surname": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"githubHandle": {
+"type": "string",
+"minLength": 1
+},
+"bio": {
+"type": "string",
+"minLength": 1
+},
+"url": {
+"type": "string",
+"minLength": 1
+}
+},
+"required": [
+"memberId",
+"squadId",
+"type",
+"nickname",
+"name",
+"prefix",
+"surname",
+"avatar",
+"githubHandle",
+"bio",
+"url"
+],
+"x-examples": {
+"example-1": {
+"memberId": 1,
+"squadId": 1,
+"type": "student",
+"nickname": "gozer",
+"name": "je",
+"prefix": "weet",
+"surname": "zelf",
+"avatar": "",
+"githubHandle": "dude",
+"bio": "I am a banana!",
+"url": "https://gozer.nl"
+}
+}
+}
+}
+},
+"description": "The member to be patched, use the correct memberId"
+},
+"tags": [
+"member"
+]
+}
+},
+"/team": {
+"get": {
+"summary": "get team",
+"tags": [
+"team"
+],
+"responses": {
+"200": {
+"description": "OK"
+}
+},
+"operationId": "get-team",
+"description": "Gets a list of all teams using pagination"
+},
+"post": {
+"summary": "post team",
+"operationId": "post-team",
+"responses": {
+"200": {
+"description": "The added team with the new insertId",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"teamId",
+"name",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"teamId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"url": {
+"type": "string"
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"insertId": {
+"type": "number"
+}
+},
+"required": [
+"insertId"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"teamId": 3,
+"name": "The A-Team",
+"description": "In 1972, a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. Today, still wanted by the government they survive as soldiers of fortune. If you have a problem, if no one else can help, and if you can find them....maybe you can hire The A-Team.",
+"avatar": "",
+"url": ""
+}
+],
+"meta": {
+"insertId": 3
+}
+}
+}
+}
+}
+}
+}
+},
+"description": "Adds a team",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"name": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"url": {
+"type": "string"
+}
+},
+"required": [
+"name",
+"description",
+"avatar",
+"url"
+],
+"x-examples": {
+"example-1": {
+"name": "The A-Team",
+"description": "In 1972, a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. Today, still wanted by the government they survive as soldiers of fortune. If you have a problem, if no one else can help, and if you can find them....maybe you can hire The A-Team.",
+"avatar": "",
+"url": ""
+}
+}
+}
+}
+},
+"description": "The team to be added"
+},
+"tags": [
+"team"
+]
+},
+"patch": {
+"summary": "patch team",
+"operationId": "patch-team",
+"responses": {
+"200": {
+"description": "The patched team and some meta info on the affected and changed rows. If affected rows is 0 then there is no corresponding team. If changed rows is 0 then there were no changes.",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"teamId",
+"name",
+"description",
+"avatar",
+"url"
+],
+"properties": {
+"teamId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"url": {
+"type": "string"
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {
+"affectedRows": {
+"type": "number"
+},
+"changedRows": {
+"type": "number"
+}
+},
+"required": [
+"affectedRows",
+"changedRows"
+]
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"teamId": 3,
+"name": "The C-Team",
+"description": "In 4072, a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. In the future, if you have a problem, if no one else can help, and if you can find them....maybe you can hire The C-Team.",
+"avatar": "",
+"url": ""
+}
+],
+"meta": {
+"affectedRows": 1,
+"changedRows": 1
+}
+}
+}
+}
+}
+}
+}
+},
+"description": "Patches a team",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"teamId": {
+"type": "number"
+},
+"name": {
+"type": "string",
+"minLength": 1
+},
+"description": {
+"type": "string",
+"minLength": 1
+},
+"avatar": {
+"type": "string"
+},
+"url": {
+"type": "string"
+}
+},
+"required": [
+"teamId",
+"name",
+"description",
+"avatar",
+"url"
+],
+"x-examples": {
+"example-1": {
+"teamId": 3,
+"name": "The C-Team",
+"description": "In 4072, a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. In the future, if you have a problem, if no one else can help, and if you can find them....maybe you can hire The C-Team.",
+"avatar": "",
+"url": ""
+}
+}
+}
+}
+},
+"description": "The team to be patched, use the correct teamId"
+},
+"tags": [
+"team"
+]
+}
+},
+"/list": {
+"get": {
+"summary": "get list",
+"tags": [
+"member"
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"application/json": {
+"schema": {
+"description": "",
+"type": "object",
+"properties": {
+"data": {
+"type": "array",
+"uniqueItems": true,
+"minItems": 1,
+"items": {
+"required": [
+"memberId",
+"memberType",
+"memberNickname",
+"memberName",
+"memberPrefix",
+"memberSurname",
+"memberAvatar",
+"memberGithubHandle",
+"memberBio",
+"memberUrl",
+"squadId",
+"squadName",
+"squadDesription",
+"squadAvatar",
+"squadUrl",
+"tribeId",
+"tribeName",
+"tribeCohort",
+"tribeDescription",
+"tribeAvatar",
+"tribeUrl"
+],
+"properties": {
+"memberId": {
+"type": "number"
+},
+"memberType": {
+"type": "string",
+"minLength": 1
+},
+"memberNickname": {
+"type": "string"
+},
+"memberName": {
+"type": "string",
+"minLength": 1
+},
+"memberPrefix": {
+"type": "string"
+},
+"memberSurname": {
+"type": "string",
+"minLength": 1
+},
+"memberAvatar": {
+"type": "string"
+},
+"memberGithubHandle": {
+"type": "string"
+},
+"memberBio": {
+"type": "string"
+},
+"memberUrl": {
+"type": "string",
+"minLength": 1
+},
+"squadId": {
+"type": "number"
+},
+"squadName": {
+"type": "string",
+"minLength": 1
+},
+"squadDesription": {
+"type": "string"
+},
+"squadAvatar": {
+"type": "string"
+},
+"squadUrl": {
+"type": "string"
+},
+"tribeId": {
+"type": "number"
+},
+"tribeName": {
+"type": "string",
+"minLength": 1
+},
+"tribeCohort": {
+"type": "string",
+"minLength": 1
+},
+"tribeDescription": {
+"type": "string",
+"minLength": 1
+},
+"tribeAvatar": {
+"type": "string",
+"minLength": 1
+},
+"tribeUrl": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"meta": {
+"type": "object",
+"properties": {},
+"required": []
+}
+},
+"required": [
+"data",
+"meta"
+],
+"x-examples": {
+"example-1": {
+"data": [
+{
+"memberId": 6,
+"memberType": "student",
+"memberNickname": "",
+"memberName": "Justin",
+"memberPrefix": "",
+"memberSurname": "Lung",
+"memberAvatar": "",
+"memberGithubHandle": "",
+"memberBio": "",
+"memberUrl": "\r",
+"squadId": 1,
+"squadName": "Squad 1",
+"squadDesription": "",
+"squadAvatar": "",
+"squadUrl": "",
+"tribeId": 7,
+"tribeName": "FDND Founders",
+"tribeCohort": "2021",
+"tribeDescription": "First tribe @FDND",
+"tribeAvatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+"tribeUrl": "https://fdnd.nl/"
+},
+{
+"memberId": 7,
+"memberType": "student",
+"memberNickname": "",
+"memberName": "Daan",
+"memberPrefix": "",
+"memberSurname": "Korver",
+"memberAvatar": "",
+"memberGithubHandle": "",
+"memberBio": "",
+"memberUrl": "",
+"squadId": 1,
+"squadName": "Squad 1",
+"squadDesription": "",
+"squadAvatar": "",
+"squadUrl": "",
+"tribeId": 7,
+"tribeName": "FDND Founders",
+"tribeCohort": "2021",
+"tribeDescription": "First tribe @FDND",
+"tribeAvatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+"tribeUrl": "https://fdnd.nl/"
+}
+],
+"meta": {}
+}
+}
+}
+}
+}
+}
+},
+"operationId": "get-list",
+"description": "Gets a fully populated list of members containing info on their squad and their tribe"
+}
+}
+},
+"components": {
+"securitySchemes": {}
+}
+}
