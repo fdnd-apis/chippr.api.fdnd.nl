@@ -11,7 +11,7 @@ let jsonParser = bodyParser.json()
 // Get all projects
 router.get('/', (req, res) => {
   console.log('Get all!')
-  con().query('SELECT * FROM clients', function (err, result, fields) {
+  con().query('SELECT * FROM projects', function (err, result, fields) {
     res.send(result)
   })
 })
@@ -29,7 +29,7 @@ router.patch('/', jsonParser, function (req, res) {
 
   // Update form data to database
   con().query(
-    `UPDATE clients SET title = ${title}, slug = ${slug}, description = ${description}, logo = ${logo} WHERE id = ${projectId}`,
+    `UPDATE projects SET title = ${title}, slug = ${slug}, description = ${description}, logo = ${logo} WHERE id = ${projectId}`,
     function (err, result, fields) {
       res.send(result)
     }
@@ -46,7 +46,7 @@ router.post('/', jsonParser, function (req, res) {
 
   // Insert form data into database
   con().query(
-    `INSERT INTO clients (title, slug, description, logo) VALUES ("${title}", "${slug}", "${description}", "${logo}")`
+    `INSERT INTO projects (title, slug, description, logo) VALUES ("${title}", "${slug}", "${description}", "${logo}")`
   )
 
   res.send(req.body)
@@ -56,7 +56,7 @@ router.post('/', jsonParser, function (req, res) {
 router.get('/:id', (req, res) => {
   let projectId = req.params.id
 
-  con().query('SELECT * FROM clients WHERE id =' + projectId, function (err, result, fields) {
+  con().query('SELECT * FROM projects WHERE id =' + projectId, function (err, result, fields) {
     res.send(result)
   })
 })
