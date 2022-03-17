@@ -17,16 +17,12 @@ router.get('/', (req, res) => {
 
 // Update existing project
 router.patch('/', function (req, res) {
-  console.log(req.body)
-
-  /*
   con().query(
-    `UPDATE projects SET title = ${title}, slug = ${slug}, description = ${description}, logo = ${logo} WHERE id = ${projectId}`,
+    `UPDATE projects SET title = ${req.body.title}, slug = ${req.body.slug}, description = ${req.body.description}, logo = ${req.body.logo} WHERE id = ${req.body.projectId}`,
     function (err, result, fields) {
       res.send(result)
     }
   )
-  */
 })
 
 // Store a new project
