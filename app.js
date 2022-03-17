@@ -9,7 +9,6 @@ const app = express()
 const projectsRoute = require('./routes/Projects')
 
 module.exports = express()
-  .use('/projects', projectsRoute)
   .use(express.json())
 
   .get('/', (req, res) => {
@@ -20,6 +19,7 @@ module.exports = express()
       docs: 'https://redocly.github.io/redoc/?url=https:%2F%2Ftribe.api.fdnd.nl%2Fv1',
     })
   })
+  .use('/projects', projectsRoute)
 
   // Send openapi doc as json
   .get('/v1', (req, res) => {
