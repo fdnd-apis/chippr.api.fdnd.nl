@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 // Update existing project
 router.patch('/', function (req, res) {
   console.log(req.body)
-  let query = `UPDATE projects SET title = "${req.body.title}", slug = "${req.body.slug}", description = "${req.body.description}", logo = "${req.body.logo}" WHERE id = "${req.body.projectId}";`
+  let query = `UPDATE projects SET title = "${req.body.title}", slug = "${req.body.slug}", description = "${req.body.description}", logo = "${req.body.logo}" WHERE id = "${req.body.id}";`
   con().query(query, function (err, result, fields) {
     console.log(err)
     console.log(result)
