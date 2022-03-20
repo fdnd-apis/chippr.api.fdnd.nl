@@ -17,7 +17,7 @@ module.exports = express
   })
 
   // Get all projects
-  .get('/', async (req, res, next) => {
+  .get(['/', '/:id'], async (req, res, next) => {
     try {
       res.json(await Project.get(req.query.page))
     } catch (err) {
