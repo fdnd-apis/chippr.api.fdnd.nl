@@ -9,7 +9,7 @@ module.exports = express()
   .use(express.urlencoded({ extended: true }))
 
   .use('/', indexRoute)
-  .use('/v1/smartzone', smartzoneRoute)
+  .use('/v1/project', projectRoute)
   .use(errorRoute)
 
 /*
