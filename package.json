@@ -1,20 +1,40 @@
 {
-  "name": "chippr-dev-api",
-  "version": "1.0.0",
-  "description": "",
+  "name": "chippr",
+  "version": "0.0.1",
+  "description": "It's an API for Chipr that holds info on projects.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "./bin/www",
+    "test": "mocha && standard --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdnd-apis/chipr"
+  },
+  "keywords": [
+    "node",
+    "json",
+    "api"
+  ],
+  "author": "Boudewijn Bout <>",
+  "contributors": [
+    "Joost Faber <j.faber@hva.nl>",
+    "Justus Sturkenboom <justus@ju5tu5.nl>"
+  ],
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/fdnd-apis/chipr/issues"
+  },
+  "homepage": "https://github.com/fdnd-apis/chipr#readme",
   "dependencies": {
-    "body-parser": "^1.19.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.15"
-  }
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3"
+  },
+  "standard": {
+    "ignore": [
+      "/test/"
+    ]
+  },
+  "devDependencies": {}
 }

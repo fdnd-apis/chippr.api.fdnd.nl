@@ -1,27 +1,32 @@
-require("dotenv").config();
-const { apply } = require("body-parser");
-const express = require("express");
-const openapi = require("./docs/openapi.json");
-
-// Routes
-const projectsRoute = require("./routes/Projects");
+require('dotenv').config()
+const express = require('express')
+const indexRoute = require('./routes/index')
+const projectRoute = require('./routes/project')
+const errorRoute = require('./routes/error')
 
 module.exports = express()
   .use(express.json())
+  .use(express.urlencoded({ extended: true }))
 
-  .get("/", (req, res) => {
+  .use('/', indexRoute)
+  .use('/v1/smartzone', smartzoneRoute)
+  .use(errorRoute)
+
+/*
+
+  .get('/', (req, res) => {
     res.json({
-      message:
-        "Welcome to the Chippr API! Please use the resources below to expore this API.",
-      github: "https://github.com/fdnd-apis/chippr",
-      spec: "https://tribe.api.fdnd.nl/v1",
-      docs: "https://redocly.github.io/redoc/?url=https:%2F%2Ftribe.api.fdnd.nl%2Fv1",
-    });
+      message: 'Welcome to the Chippr API! Please use the resources below to expore this API.',
+      github: 'https://github.com/fdnd-apis/chippr',
+      spec: 'https://tribe.api.fdnd.nl/v1',
+      docs: 'https://redocly.github.io/redoc/?url=https:%2F%2Ftribe.api.fdnd.nl%2Fv1',
+    })
   })
 
-  .use("/projects", projectsRoute)
+  .use('/projects', projectsRoute)
 
   // Send openapi doc as json
-  .get("/v1", (req, res) => {
-    res.json(openapi);
-  });
+  .get('/v1', (req, res) => {
+    res.json(openapi)
+  })
+*/
