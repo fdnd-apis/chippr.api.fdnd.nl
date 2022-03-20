@@ -55,7 +55,7 @@ project.getById = async function (id) {
  */
 project.post = async function (project) {
   const rows = await db.query(
-    `INSERT INTO project SET ${prepareQuery(project)}`,
+    `INSERT INTO projects SET ${prepareQuery(project)}`,
     prepareArray(project)
   )
   project.id = rows.insertId
@@ -74,7 +74,7 @@ project.post = async function (project) {
  */
 project.put = async function (project) {
   const rows = await db.query(
-    `UPDATE project SET ${prepareQuery(project)} WHERE id = ?`,
+    `UPDATE projects SET ${prepareQuery(project)} WHERE id = ?`,
     prepareArray(project)
   )
   return {
@@ -90,7 +90,7 @@ project.put = async function (project) {
  */
 project.patch = async function (project) {
   const rows = await db.query(
-    `UPDATE project SET ${prepareQuery(project)} WHERE id = ?`,
+    `UPDATE projects SET ${prepareQuery(project)} WHERE id = ?`,
     prepareArray(project)
   )
   return {
@@ -105,7 +105,7 @@ project.patch = async function (project) {
  * @returns
  */
 project.delete = async function (id) {
-  const rows = await db.query(`DELETE FROM project WHERE id = ?`, [id])
+  const rows = await db.query(`DELETE FROM projects WHERE id = ?`, [id])
   return {
     data: {},
     meta: helper.emptyOrRows(rows),
