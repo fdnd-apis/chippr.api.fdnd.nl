@@ -31,7 +31,7 @@ module.exports = express
   // Get a specific project
   .get('/:id', async (req, res, next) => {
     try {
-      res.json(await Project.getgetById(req.params.id))
+      res.json(await Project.getById(req.params.id))
     } catch (err) {
       res.json({
         message: `Error while getting project: ${err.message}`,
