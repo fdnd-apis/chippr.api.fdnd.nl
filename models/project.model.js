@@ -44,7 +44,7 @@ project.getById = async function (id) {
   const rows = await db.query(`SELECT * FROM projects WHERE id = ?`, [id])
   return {
     data: helper.emptyOrRows(rows),
-    meta: { page },
+    meta: {},
   }
 }
 
